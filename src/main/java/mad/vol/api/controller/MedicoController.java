@@ -2,6 +2,7 @@ package mad.vol.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +32,7 @@ public class MedicoController {
     }
 
     @GetMapping
-    public Page<DadosListagemMedicos> listar(org.springframework.data.domain.Pageable pagina){
+    public Page<DadosListagemMedicos> listar(@PageableDefault(size = 10, sort = {"nome"}) org.springframework.data.domain.Pageable pagina){
         return repository.findAll(pagina).map(DadosListagemMedicos::new);
     }
 }
