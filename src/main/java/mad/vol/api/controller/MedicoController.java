@@ -1,8 +1,7 @@
 package mad.vol.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +14,7 @@ import mad.vol.api.Medico.DadosCadastradosMedicos;
 import mad.vol.api.Medico.DadosListagemMedicos;
 import mad.vol.api.Medico.Medico;
 import mad.vol.api.Medico.MedicoRepository;
+
 
 @RestController
 @RequestMapping("medicos")
@@ -31,7 +31,7 @@ public class MedicoController {
     }
 
     @GetMapping
-    public List<DadosListagemMedicos> listar(){
-        return repository.findAll().stream().map(DadosListagemMedicos::new).toList();
+    public Page<DadosListagemMedicos> listar(org.springframework.data.domain.Pageable pagina){
+        return repository.findAll(pagina).map(DadosListagemMedicos::new);
     }
 }
