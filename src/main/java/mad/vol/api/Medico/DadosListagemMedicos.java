@@ -4,10 +4,11 @@ public record DadosListagemMedicos(
     String nome,
     String email,
     String crm,
+    Long id,
     Especialidade especialidade
 
 ) {
     public DadosListagemMedicos(Medico medico){
-        this(medico.getCrm(),medico.getNome(), medico.getEmail(), medico.getEspecialidade());
+        this(medico.getNome(),medico.getEmail(), medico.getCrm(), medico.getId(), medico.getEspecialidade());
     }
 }
